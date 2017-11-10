@@ -1,0 +1,27 @@
+page-welcome {
+        #welcome{
+            background-image: url("../assets/imgs/green.jpg");
+            text-align: center;
+            //background: color($colors,energy);
+            h1{
+                font-size: 52px;
+                margin-top:25px;
+                text-align: center;
+                margin-bottom: 52px;
+                color: rgb(101, 138, 16);
+            }
+            .marginTop{
+                margin-top:150px;
+            }
+            .logo{
+                height: 275px;
+                //align-self: center;
+                //align-content: center;
+                //align-items: center;
+            }
+            button{
+                width:250px;
+            }
+        }
+
+}
