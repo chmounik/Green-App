@@ -20,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { QuestionsProvider } from '../providers/questions/questions';
 import { WemoProvider } from '../providers/wemo/wemo';
+import { SignupProvider } from '../providers/signup/signup';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { WemoProvider } from '../providers/wemo/wemo';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuestionsProvider,
-    WemoProvider
+    WemoProvider,
+    SignupProvider,
+    SignupProvider
   ]
 })
 export class AppModule {}
