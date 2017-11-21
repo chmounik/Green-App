@@ -25,7 +25,8 @@ export class LoginPage {
     console.log(this.username);
     console.log(this.password);
     if(this.username === 'mounik' && this.password === '123456'){
-      this.navCtrl.push(HomePage);
+      //this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(HomePage);
     }
   }
 

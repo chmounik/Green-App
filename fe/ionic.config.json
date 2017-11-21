@@ -1,6 +1,6 @@
 {
   "name": "Green",
-  "app_id": "",
+  "app_id": "d5af4a6b",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
