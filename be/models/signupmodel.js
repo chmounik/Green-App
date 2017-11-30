@@ -1,5 +1,6 @@
 // grab the things we need
 var mongoose = require('mongoose');
+var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
@@ -36,9 +37,7 @@ var signupSchema = new Schema({
     timestamps: true
 });
 
-// the schema is useless so far
-// we need to create a model using it
+signupSchema.plugin(passportLocalMongoose);
 var Signup = mongoose.model('Signup', signupSchema);
 
-// make this available to our Node applications
 module.exports = Signup;

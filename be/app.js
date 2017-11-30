@@ -4,12 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var authenticate = require('./authenticate');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var wemo = require('./routes/wemo');
 var signup = require('./routes/signup');
+var questions = require('./routes/questions');
+var nest = require('./routes/nest');
 var cors = require('cors');
+var config = require('./config');
 
 var app = express();
 
@@ -25,16 +30,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/wemo',wemo);
 app.use('/signup',signup);
+app.use('/question',questions);
+app.use('/nest',nest);
 
-var url = 'mongodb://localhost:27017/green';
-mongoose.Promise = global.Promise;
+
+const url = config.mongoUrl;
+//mongoose.Promise = global.Promise;
 mongoose.connection.openUri(url);
 //mongoose.createConnection(url);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

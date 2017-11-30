@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignupProvider } from '../../providers/signup/signup';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the SignupPage page.
@@ -32,9 +33,7 @@ export class SignupPage {
       password:this.password,
       confirmPassword:this.confirmPassword
     };
-    this.signupProvider.addUser(userData);
-    //console.log(JSON.stringify(userData));
-    //console.log(this.username+this.name+this.email+this.password+this.confirmPassword);
+    this.signupProvider.addUser(userData).subscribe(result =>{if(result == 200) this.navCtrl.push(LoginPage);});
   }
 
   ionViewDidLoad() {

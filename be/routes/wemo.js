@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router()
 var Wemo = require('wemo-client');
 var wemo = new Wemo();
+var authenticate = require('../authenticate');
 var deviceinfo;
-router.get('/', function(req, res, next) {
+router.route('/').get(authenticate.verifyUser, function(req, res, next) {
     console.log('Inside Get');
     if(typeof client === 'undefined'){
         wemo.discover(function(err, deviceInfo) {
@@ -19,30 +20,16 @@ router.get('/', function(req, res, next) {
             });
         });
     }
-    
-        // Handle BinaryState events
-        /*client.on('binaryState', function(value) {
-            console.log('Binary State changed to: %s', value);
-            client.getInsightParams(function(err, binaryState, instantPower, data) {
-                console.log('Power Consumption: %s', instantPower);
-                var cons = JSON.parse(JSON.stringify(data));
-                console.log('Power Consumed Today: %s',cons.TodayConsumed);
-                res.setHeader('Access-Control-Allow-Origin', '*')
-                res.setHeader('Access-Control-Allow-Headers', 'Content-type')
-                res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-                res.send(cons);
-            });
-        });*/
         client.getInsightParams(function(err, binaryState, instantPower, data) {
             //client = wemo.client(deviceInfo);
             console.log('Instant power: %s', instantPower);
             var cons = JSON.parse(JSON.stringify(data));
             console.log('Power Consumed Today: %s',cons.TotalPower);
-            res.setHeader('Access-Control-Allow-Origin', '*');
+            /*res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Headers', 'Content-type');
-            res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+            res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');*/
             cons["InstantPower"] = instantPower;
-            res.send(cons);
+            res.json(cons);
         });
     // Turn the switch on
     //client.setBinaryState(1);

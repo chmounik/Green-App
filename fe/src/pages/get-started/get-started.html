@@ -14,11 +14,18 @@
 
 </ion-header>
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+        Carbon Emissions
+      </ion-card-header>
+      <ion-card-content>
+          {{carbonEmission}} lbs of CO2
+      </ion-card-content>
+  </ion-card>
   <!--<ion-list>
     <ion-item *ngFor="let question of questions">{{question}}</ion-item>-->
-  <ion-list *ngIf="carbonEmission === 0">
   <ion-list no-lines>
-  <form [formGroup]="startForm" onsubmit="">
+  <form [formGroup]="startForm" (ngSubmit)="scrollTo()">
   <ion-list radio-group formControlName="car">
     <ion-list-header>Do you own a car?</ion-list-header>
       <ion-item>
@@ -36,7 +43,7 @@
     </ion-item>
     <ion-item>
         <ion-label stacked>Your average monthly electric bill?</ion-label>
-        <ion-input formControlName="power" type="text" placeholder="in $ or KWH"></ion-input>
+        $<ion-input formControlName="power" type="text" placeholder="in $"></ion-input>
     </ion-item>
     <ion-list radio-group formControlName="gas">
       <ion-list-header>Do you have natural gas for heating and/or cooking?</ion-list-header>
@@ -50,7 +57,7 @@
         </ion-item>
     </ion-list>
     <ion-item *ngIf="startForm.get('gas').value === 'yes'">
-        <ion-label stacked>How much gas do you typically use per month?</ion-label>
+        <ion-label stacked>How much gas do you typically use per month in therms?</ion-label>
         <ion-input formControlName="therms" type="text" placeholder="in Therms"></ion-input>
     </ion-item>
     <ion-list radio-group formControlName="flown">
@@ -69,7 +76,7 @@
         <ion-input formControlName="flymiles" type="text" placeholder="in miles"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label stacked>How big is your home?</ion-label>
+        <ion-label stacked>How many sq. ft. is your home?</ion-label>
         <ion-input formControlName="housearea" type="text" placeholder="in sq.ft"></ion-input>
     </ion-item>
     <ion-item>
@@ -78,9 +85,5 @@
     </ion-item>
   </form>
   </ion-list>
-  <button ion-button full (click)="save()">Submit</button>
-  </ion-list>
-  <ion-list *ngIf="carbonEmission > 0">
-      <h1>Carbon Emissions: {{carbonEmission}}</h1>
-  </ion-list>
+  <button ion-button full [disabled]="!startForm.valid" (click)="save()">Calculate</button>
 </ion-content>

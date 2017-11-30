@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers } from '@angular/http';
+import { Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,21 +10,21 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SignupProvider {
-
+  status:any;
   constructor(public http: Http) {
     console.log('Hello SignupProvider Provider');
+    this.status = null;
   }
 
-  addUser(user:any){
+  addUser(user:any) : any{
     console.log("Inside Provider");
     console.log(JSON.stringify(user));
     //let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
    // headers.append('Access-Control-Allow-Origin', 'http://localhost:8100');
    // headers.append('Access-Control-Allow-Credentials', 'true');
-    this.http.post('http://localhost:3000/signup', user) //, {headers: headers})
-      .subscribe(res => {
-        console.log(res);
+    return this.http.post('http://localhost:3000/signup', user) //, {headers: headers})
+      .map(res => {console.log(res);return res.status
   })
 }
 }

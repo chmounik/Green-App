@@ -6,9 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { GetStartedPage } from '../pages/get-started/get-started';
 import { WemoDetailsPage } from '../pages/wemo-details/wemo-details';
+import { NestPage } from '../pages/nest/nest';
+import { LogoutPage } from '../pages/logout/logout';
 
 /* Welcome & Login imports */
 
@@ -18,9 +19,12 @@ import {SignupPage} from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { QuestionsProvider } from '../providers/questions/questions';
 import { WemoProvider } from '../providers/wemo/wemo';
 import { SignupProvider } from '../providers/signup/signup';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { QuestionProvider } from '../providers/question/question';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -29,9 +33,10 @@ import { SignupProvider } from '../providers/signup/signup';
     LoginPage,
     SignupPage,
     HomePage,
-    ListPage,
     GetStartedPage,
-    WemoDetailsPage
+    WemoDetailsPage,
+    NestPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,
@@ -46,18 +51,21 @@ import { SignupProvider } from '../providers/signup/signup';
     LoginPage,
     SignupPage,
     HomePage,
-    ListPage,
     GetStartedPage,
-    WemoDetailsPage
+    WemoDetailsPage,
+    NestPage,
+    LogoutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QuestionsProvider,
     WemoProvider,
     SignupProvider,
-    SignupProvider
+    AuthenticationProvider,
+    QuestionProvider,
+    InAppBrowser,
+    SocialSharing
   ]
 })
 export class AppModule {}

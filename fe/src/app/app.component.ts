@@ -5,10 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {WelcomePage} from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { GetStartedPage } from '../pages/get-started/get-started';
 import { WemoDetailsPage } from '../pages/wemo-details/wemo-details';
-
+import { NestPage } from '../pages/nest/nest';
+import { LogoutPage } from '../pages/logout/logout';
 @Component({
   templateUrl: 'app.html'
 })
@@ -28,9 +28,10 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
       { title: 'Get Started',component: GetStartedPage },
-      { title: 'Wemo Details',component: WemoDetailsPage }
+      { title: 'Wemo Details',component: WemoDetailsPage },
+      { title: 'Nest Devices',component: NestPage },
+      { title: 'Logout',component: LogoutPage}
     ];
 
   }
